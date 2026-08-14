@@ -1,0 +1,114 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  min-height: 100%;
+  background-color: #000000;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  background-color: #000000;
+  color: #ffffff;
+
+  font-family: "Times New Roman", Times, serif;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: max(24px, env(safe-area-inset-top))
+    max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom))
+    max(24px, env(safe-area-inset-left));
+
+  overflow-x: hidden;
+}
+
+main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.message {
+  margin: 0;
+  font-size: clamp(1.75rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+/* On larger screens, both parts remain on the same line. */
+
+.message span {
+  display: inline;
+}
+
+/* Adds a normal space between the two spans on larger screens. */
+
+.message span + span::before {
+  content: " ";
+}
+
+.date {
+  margin: clamp(1.5rem, 4vw, 2.5rem) 0 0;
+  font-size: clamp(1rem, 2.2vw, 1.5rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+/* SMALL DEVICES ONLY */
+
+@media (max-width: 600px) {
+  .message span {
+    display: block;
+  }
+
+  /* Remove the artificial space when the second phrase moves
+     onto its own line. */
+
+  .message span + span::before {
+    content: "";
+  }
+
+  .message {
+    font-size: clamp(1.55rem, 7vw, 2.25rem);
+  }
+
+  .date {
+    margin-top: 1.75rem;
+    font-size: 1rem;
+  }
+}
+
+/* Very small phones */
+
+@media (max-width: 360px) {
+  body {
+    padding: 20px;
+  }
+
+  .message {
+    font-size: 1.55rem;
+  }
+}
+
+/* Short landscape screens */
+
+@media (max-height: 500px) {
+  .message {
+    font-size: clamp(1.5rem, 5vh, 2.5rem);
+  }
+
+  .date {
+    margin-top: 1rem;
+  }
+}
